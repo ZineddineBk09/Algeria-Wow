@@ -97,4 +97,4 @@ The website will be structured into distinct pages, each catering to specific us
     -   Prepare final documentation outlining website functionalities and user experience.
 
 > [!IMPORTANT]  
-> This proposed timeline assumes the backend functionality is already developed or will be handled by a separate team. Due to current commitments with my part-time job and pursuing a Master's degree, I would prefer to dedicate focused development efforts on this project starting from July 2024, Inshallah. However, I remain available throughout May and June for any further discussions, adjustments, or content gathering tasks.
+> This proposed timeline assumes the backend functionality is already developed or will be handled by a separate team. Due to current commitments with my part-time job and pursuing a Master's degree, I would prefer to dedicate focused development efforts on this project starting from **July 2024**, Inshallah. However, I remain available throughout May and June for any further discussions, adjustments, or content gathering tasks.
