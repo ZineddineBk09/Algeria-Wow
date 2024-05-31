@@ -1,4 +1,4 @@
-import { MagnifyingGlassIcon, TextAlignRightIcon } from "@radix-ui/react-icons";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import React from "react";
 import Logo from "../logo";
