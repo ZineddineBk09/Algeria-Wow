@@ -1,19 +1,33 @@
+import * as React from "react";
+
+import { Card, CardContent } from "~/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "~/components/ui/carousel";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
   return (
     <>
       <section className="flex w-full items-center justify-center">
-        <div className="container grid grid-cols-1 items-center gap-8 px-4 md:grid-cols-2 md:px-6">
-          <div className="relative w-full overflow-hidden rounded-lg md:h-[500px] lg:h-[600px]">
-            <img
+        <div className="w-full grid grid-cols-1 items-center px-4 md:grid-cols-3 md:px-6">
+          <div className="col-span-2 relative overflow-hidden ">
+            <Image
               alt="Hero Background"
-              className="object-cover"
+              className="object-cover rounded-lg"
               src="/images/hero.png"
+              layout="cover"
+              width={850}
+              height={600}
             />
           </div>
-          <div className="space-y-4">
+          <div className="w-10/12 space-y-4 col-span-1">
             <h1 className="text-2xl font-bold text-primary-blue dark:text-gray-50 ">
               Casbah, Algeria
             </h1>
@@ -40,9 +54,42 @@ export default function Hero() {
                 Discover <ArrowRightIcon className="ml-3 font-bold" />
               </Link>
             </div>
+            <ImagesCarousel />
           </div>
         </div>
       </section>
     </>
+  );
+}
+
+export function ImagesCarousel() {
+  return (
+    <Carousel className="ml-10 w-[250px]">
+      <CarouselContent className="-ml-16">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <CarouselItem
+            key={index}
+            // z index is used to make sure each item is on top of the next one
+            // rotating the carousel
+            // 4 images with rotations: -20, 0, 20, 40
+            // and to give a look of a 3D carousel, we are using shadow to give a depth effect
+            // also we are using basis to make sure the carousel items are taking the same width
+            // also give an arc look with translate-y
+            className={`-ml-16 pl-2 md:basis-1/2 lg:basis-1/3 z-[${5 - index}] rotate-[${index * 10 - 10}deg] translate-y-[${index * -2}px] 
+            `}
+          >
+            <div className="p-1">
+              <Card>
+                <CardContent className="flex aspect-square items-center justify-center p-6">
+                  <span className="text-2xl font-semibold">{index + 1}</span>
+                </CardContent>
+              </Card>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
   );
 }
