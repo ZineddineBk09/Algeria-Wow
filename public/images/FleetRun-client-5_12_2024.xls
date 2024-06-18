@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head >
+  <body>
+    
+    <table>
+      <thead>
+        <tr><th><b>ID</b></th><th><b>COD</b></th><th><b>Added At</b></th><th><b>Client Account</b></th><th><b>Client Address</b></th><th><b>Client Supervisor</b></th><th><b>Customer Name</b></th><th><b>Customer Phone Number</b></th><th><b>Total Order Value</b></th><th><b>Status</b></th><th><b>Pickup Address</b></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>true</td><td>2024-05-12T06:51:43.570837</td><td>KFC</td><td>Saudi Arabia-Riyadh-City</td><td>client</td><td>customer</td><td>+213556190492</td><td>0</td><td>searching</td><td>Saudi Arabia-Riyadh-City</td></tr>
+      </tbody>
+    </table>
+  
+  </body>
+</html >

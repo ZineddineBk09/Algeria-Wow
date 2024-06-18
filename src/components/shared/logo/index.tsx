@@ -2,7 +2,13 @@ import dynamic from "next/dynamic";
 const Link = dynamic(() => import("next/link"));
 const Image = dynamic(() => import("next/image"));
 
-const Logo = ({ className = "" }: { className?: string }) => {
+const Logo = ({
+  className = "",
+  white = false,
+}: {
+  className?: string;
+  white?: boolean;
+}) => {
   return (
     <Link
       href="/"
@@ -11,7 +17,7 @@ const Logo = ({ className = "" }: { className?: string }) => {
       className={`w-26 relative ${className}`}
     >
       <Image
-        src="/images/logo.png"
+        src={white ? "/images/logo-white.png" : "/images/logo.png"}
         alt="Company"
         width={150}
         height={150}
