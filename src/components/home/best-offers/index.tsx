@@ -4,7 +4,7 @@ import React from "react";
 
 export default function BestOffers() {
   return (
-    <div className="relative flex w-full items-center justify-center h-[460px]">
+    <div className="relative flex w-[100vw] items-center justify-center h-[460px]">
       <Image
         alt="Hero Background"
         className="-z-10 h-fit w-full object-contain"
