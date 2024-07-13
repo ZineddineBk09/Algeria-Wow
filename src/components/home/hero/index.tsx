@@ -16,18 +16,21 @@ export default function Hero() {
   return (
     <>
       <section className="flex w-full items-center justify-center">
-        <div className="w-full grid grid-cols-1 items-center px-4 md:grid-cols-3 md:px-6">
-          <div className="col-span-2 relative overflow-hidden ">
+        <div className=" grid  w-full grid-cols-1 items-center gap-10 px-4 md:px-6 lg:grid-cols-3 lg:gap-4">
+          {/* Hero Image */}
+          <div className="relative col-span-1 w-full overflow-hidden lg:col-span-2">
             <Image
               alt="Hero Background"
-              className="object-cover rounded-lg"
+              className="rounded-lg object-cover"
               src="/images/hero.png"
               layout="cover"
               width={850}
               height={600}
             />
           </div>
-          <div className="w-10/12 space-y-4 col-span-1">
+
+          {/* Hero Text */}
+          <div className="mx-auto w-full space-y-4 lg:w-10/12">
             <h1 className="text-2xl font-bold text-primary-blue dark:text-gray-50 ">
               Casbah, Algeria
             </h1>
@@ -64,7 +67,7 @@ export default function Hero() {
 
 export function ImagesCarousel() {
   return (
-    <Carousel className="ml-10 w-[250px]">
+    <Carousel className="ml-10 lg:w-[250px]">
       <CarouselContent className="-ml-16">
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem
