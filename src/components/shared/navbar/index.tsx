@@ -4,6 +4,7 @@ import React from "react";
 import Logo from "../logo";
 import { MobileNavbar } from "./mobile";
 import { UnderlineLink } from "../components";
+import AuthDialogs from "~/components/auth";
 
 const Navbar = () => {
   const links = [
@@ -70,12 +71,7 @@ const Navbar = () => {
         </Link>
       </nav>
       <div className="ml-auto">
-        <Link
-          className="inline-flex h-11 items-center justify-center rounded-xl border-2 border-primary-yellow bg-white px-8 py-1 text-sm font-medium text-primary-yellow hover:bg-gray-100  focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-300 disabled:pointer-events-none disabled:opacity-50"
-          href="#"
-        >
-          Log in/Sign up
-        </Link>
+        <AuthDialogs />
       </div>
       <MobileNavbar />
     </header>
