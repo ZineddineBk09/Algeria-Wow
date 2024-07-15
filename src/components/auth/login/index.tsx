@@ -13,7 +13,7 @@ import { Input } from "~/components/ui/input";
 import { Separator } from "~/components/ui/separator";
 import Logo from "~/components/shared/logo";
 import { formClasses } from "~/components/styles";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { GoogleIcon, FacebookIcon } from "~/components/icons";
@@ -24,16 +24,21 @@ const schema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
+type FormData = z.infer<typeof schema>;
+
 export default function Login() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<FormData> = (data: {
+    email: string;
+    password: string;
+  }) => {
     console.log(data);
   };
 
@@ -43,7 +48,7 @@ export default function Login() {
         <Button
           variant="ghost"
           size="icon"
-          className="inline-flex h-11 w-fit items-center justify-center rounded-xl text-sm font-medium text-primary text-primary-yellow hover:text-primary-yellow focus-visible:ring-gray-300 disabled:pointer-events-none disabled:opacity-50 hover:bg-transparent"
+          className="inline-flex h-11 w-fit items-center justify-center rounded-xl text-sm font-medium text-primary text-primary-yellow hover:bg-transparent hover:text-primary-yellow focus-visible:ring-gray-300 disabled:pointer-events-none disabled:opacity-50"
         >
           Log in
         </Button>
@@ -51,9 +56,9 @@ export default function Login() {
 
       <DialogContent className="flex-1 overflow-y-auto px-6 py-8">
         <DialogHeader className="-ml-3 mb-2">
-          <Logo />
+          {/* <Logo /> */}
         </DialogHeader>
-        <div className="w-full mx-auto max-w-lg space-y-5 px-4">
+        <div className="mx-auto w-full max-w-lg space-y-5 px-4">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold text-primary-blue">
               Welcome back!
@@ -136,7 +141,7 @@ export default function Login() {
               className="font-semibold text-primary-blue"
               prefetch={false}
             >
-              Let's create one
+              Let&apos;s create one
             </Link>
           </div>
         </div>
