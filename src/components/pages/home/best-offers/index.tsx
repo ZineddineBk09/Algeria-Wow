@@ -4,10 +4,10 @@ import React from "react";
 
 export default function BestOffers() {
   return (
-    <div className="relative flex w-[100vw] items-center justify-center h-[460px]">
+    <div className="relative flex w-screen items-center justify-center h-[460px] mt-16">
       <Image
         alt="Hero Background"
-        className="-z-10 h-fit w-full object-contain"
+        className="-z-10 h-fit w-full object-cover"
         src="/images/best-offers-bg.png"
         layout="fill"
       />

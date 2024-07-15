@@ -1,8 +1,15 @@
+"use client";
+
 import { DotFilledIcon, StarIcon } from "@radix-ui/react-icons";
 import { MapPinIcon } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import { Badge } from "~/components/ui/badge";
+import { Mousewheel } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
+const CAROUSEL_ITEMS = 10;
 
 export default function WhereToStay() {
   return (
@@ -26,10 +33,25 @@ export default function WhereToStay() {
       </div>
 
       {/* Places */}
-      <div className="mr-auto flex w-full flex-col items-start justify-center space-y-12">
-        <div className="grid w-full grid-cols-3 items-center justify-start gap-3">
-          {Array.from({ length: 3 }).map((_, index) => (
-            <div key={index} className="w-full">
+      <PlacesCarousel />
+    </section>
+  );
+}
+
+function PlacesCarousel() {
+  return (
+    <>
+      <Swiper
+        className="mySwiper"
+        slidesPerView={3}
+        rewind
+        mousewheel
+        direction="horizontal"
+        modules={[Mousewheel]}
+      >
+        {Array.from({ length: CAROUSEL_ITEMS }).map((_, index) => (
+          <SwiperSlide key={index}>
+            <div>
               <a href="#" className="relative">
                 <img
                   className="rounded-t-lg"
@@ -50,7 +72,7 @@ export default function WhereToStay() {
                   </h5>
                 </a>
                 <p className="mb-3 flex w-full items-center text-xs font-normal text-text-gray-light">
-                  <MapPinIcon className="h-4 -mr-[2px]" /> Algiers{" "}
+                  <MapPinIcon className="-mr-[2px] h-4" /> Algiers{" "}
                   <DotFilledIcon className="mx-1" />{" "}
                   <StarIcon className="mr-1" /> 4.5 / 5
                 </p>
@@ -67,9 +89,9 @@ export default function WhereToStay() {
                 </p>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </>
   );
 }

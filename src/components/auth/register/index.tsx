@@ -13,7 +13,7 @@ import { Input } from "~/components/ui/input";
 import { Separator } from "~/components/ui/separator";
 import Logo from "~/components/shared/logo";
 import { formClasses } from "~/components/styles";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { GoogleIcon, FacebookIcon } from "~/components/icons";
@@ -33,16 +33,23 @@ const schema = z
     path: ["confirmPassword"],
   });
 
+type FormData = z.infer<typeof schema>;
+
 export default function Register() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit: SubmitHandler<FormData> = (data: {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  }) => {
     console.log(data);
   };
 
@@ -59,9 +66,6 @@ export default function Register() {
       </DialogTrigger>
 
       <DialogContent className="flex-1 overflow-y-auto px-6 py-8">
-        <DialogHeader className="-ml-3 mb-2">
-          <Logo />
-        </DialogHeader>
         <div className="mx-auto max-w-lg space-y-5 px-2">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold text-primary-blue">

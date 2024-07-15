@@ -1,60 +1,66 @@
-import AdBanner from "~/components/home/ad-banner";
-import BestOffers from "~/components/home/best-offers";
-import DiscoverExperience from "~/components/home/discover-experience";
-import Flights from "~/components/home/flights";
-import ForTourists from "~/components/home/for-tourists";
-import Hero from "~/components/home/hero";
-import WhatToDo from "~/components/home/what-to-do";
-import WhereToEat from "~/components/home/where-to-eat";
-import WhereToStay from "~/components/home/where-to-stay";
+import AdBanner from "~/components/pages/home/ad-banner";
+import BestOffers from "~/components/pages/home/best-offers";
+import DiscoverExperience from "~/components/pages/home/discover-experience";
+import Flights from "~/components/pages/home/flights";
+import ForTourists from "~/components/pages/home/for-tourists";
+import Hero from "~/components/pages/home/hero";
+import WhatToDo from "~/components/pages/home/what-to-do";
+import WhereToEat from "~/components/pages/home/where-to-eat";
+import WhereToStay from "~/components/pages/home/where-to-stay";
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen w-full flex-col items-center justify-center space-y-16">
-      <Hero />
-      <DiscoverExperience />
-      <AdBanner
-        text={
-          <div>
-            Promote your
-            <br /> business on AlgeriaWOW
-          </div>
-        }
-        actionText="Get started"
-      />
-      <WhatToDo />
-      <AdBanner
-        text={
-          <div>
-            Promote your
-            <br /> business on AlgeriaWOW
-          </div>
-        }
-        actionText="Get started"
-      />
-      <WhereToStay />
-      <AdBanner
-        text={
-          <div>
-            Promote your
-            <br /> business on AlgeriaWOW
-          </div>
-        }
-        actionText="Get started"
-      />
+    <main className="w-full">
+      <div className="mx-auto flex min-h-screen w-[90%] flex-col items-center justify-center space-y-16">
+        <Hero />
+        <DiscoverExperience />
+        <AdBanner
+          text={
+            <div>
+              Promote your
+              <br /> business on AlgeriaWOW
+            </div>
+          }
+          actionText="Get started"
+        />
+        <WhatToDo />
+        <AdBanner
+          text={
+            <div>
+              Promote your
+              <br /> business on AlgeriaWOW
+            </div>
+          }
+          actionText="Get started"
+        />
+        <WhereToStay />
+        <AdBanner
+          text={
+            <div>
+              Promote your
+              <br /> business on AlgeriaWOW
+            </div>
+          }
+          actionText="Get started"
+        />
+      </div>
+
       <BestOffers />
-      <WhereToEat />
-      <AdBanner
-        text={
-          <div>
-            Promote your
-            <br /> business on AlgeriaWOW
-          </div>
-        }
-        actionText="Get started"
-      />
-      <ForTourists />
-      <Flights />
+
+      <div className="mx-auto flex min-h-screen w-[90%] flex-col items-center justify-center space-y-16">
+        <WhereToEat />
+        <AdBanner
+          text={
+            <div>
+              Promote your
+              <br /> business on AlgeriaWOW
+            </div>
+          }
+          actionText="Get started"
+        />
+        <ForTourists />
+        <Flights />
+      </div>
     </main>
   );
 }
