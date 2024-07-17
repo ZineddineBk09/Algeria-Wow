@@ -5,9 +5,11 @@ import { Slider } from "~/components/ui/slider";
 import { Label } from "~/components/ui/label";
 import { Checkbox } from "~/components/ui/checkbox";
 import { Button } from "~/components/ui/button";
-import { CheckIcon, MapPinIcon, Minus } from "lucide-react";
+import { CheckIcon, MapPinIcon, Minus, StarIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { Separator } from "~/components/ui/separator";
+import Rating from "~/components/shared/rating";
 
 const MiniTitle = ({ text }: { text: string }) => (
   <h3 className="mb-2 text-base font-semibold text-primary-blue">{text}</h3>
@@ -76,7 +78,7 @@ export default function WhereToStayPage() {
       id: 3,
       image: "/placeholder.svg",
       name: "Hostel Constantine",
-      rating: 3,
+      rating: 3.5,
       stars: 3,
       type: "Hostel",
       facilities: ["Parking", "Free WiFi"],
@@ -548,109 +550,76 @@ export default function WhereToStayPage() {
       </div>
 
       {/* Places */}
-      <div className="grid gap-4 overflow-y-auto">
+      <div className="grid overflow-y-auto">
         {filteredProducts.map((product, index: number) => (
           <div
             key={index}
-            className="flex items-start gap-6 rounded-lg bg-background p-6 shadow-lg"
+            className="flex w-full items-center gap-3 rounded-lg bg-background"
           >
-            <Image
+            <img
               src="/images/place-img-1.png"
-              alt="Hotel Room"
-              width={300}
-              height={200}
-              className="w-1/4 rounded-lg object-cover"
+              alt=""
+              className="h-64 w-[60%] rounded-lg"
             />
-            <div className="flex flex-col gap-4">
+            <div className="flex w-full flex-col gap-4">
               <div>
-                <h3 className="text-2xl font-bold">
-                  Rodina Hotel Spa & Conferences
-                </h3>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <MapPinIcon className="h-4 w-4" />
-                  <Link href="#" className="hover:underline" prefetch={false}>
-                    3, rue Franklin Roosevelt, Algiers 16100 Algeria
-                  </Link>
+                <div className="flex w-full items-center justify-between">
+                  <h3 className="text-xl font-bold text-primary-blue">
+                    Rodina Hotel Spa & Conferences
+                  </h3>
+
+                  {/* Rating */}
+                  {
+                    <div className="flex items-center gap-1">
+                      <Rating rating={product.rating} size="sm" />
+                      <span className="ml-3 text-sm font-semibold text-text-gray-light">
+                        {`${product.rating} / 5`}
+                      </span>
+                    </div>
+                  }
+                </div>
+                <div className="flex w-full items-center justify-between my-2">
+                  <div className="flex items-center gap-2 text-sm text-text-gray-light">
+                    <MapPinIcon className="h-4 w-4" />
+                    <Link href="#" className="underline" prefetch={false}>
+                      3, rue Franklin Roosevelt, Algiers 16100 Algeria
+                    </Link>
+                  </div>
+
+                  {/* Reviews */}
+                  <span className="text-primary-blue underline text-sm">1,345 reviews</span>
                 </div>
               </div>
               <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
                   <CheckIcon className="h-4 w-4 text-green-500" />
-                  <span>Free cancellation</span>
+                  <span className="text-primary-blue">Free cancellation</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckIcon className="h-4 w-4 text-green-500" />
-                  <span>Reserve now, pay at stay</span>
+                  <span className="text-primary-blue">
+                    Reserve now, pay at stay
+                  </span>
                 </div>
               </div>
+              <Separator />
               <div className="flex items-center justify-between">
-                <div className="text-2xl font-bold text-primary">
-                  From 1 345 DZD / night
+                <div className="text-primary-yellow">
+                  From 1 345 DZD{" "}
+                  <span className="text-primary-blue">/ night</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1 text-green-500">
-                    <StarIcon className="h-5 w-5" />
-                    <StarIcon className="h-5 w-5" />
-                    <StarIcon className="h-5 w-5" />
-                    <StarIcon className="h-5 w-5" />
-                    <StarIcon className="h-5 w-5 text-muted-foreground" />
-                  </div>
-                  <div className="text-sm font-medium">4.5 / 5</div>
-                  <Link
-                    href="#"
-                    className="text-sm font-medium hover:underline"
-                    prefetch={false}
-                  >
-                    13883 reviews
-                  </Link>
-                </div>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-11 w-fit items-center justify-center rounded-xl border-2 border-primary-yellow bg-white px-8 py-1 text-sm font-medium text-primary text-primary-yellow hover:bg-gray-100  hover:text-primary-yellow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-300 disabled:pointer-events-none disabled:opacity-50"
+                >
+                  Check availability
+                </Button>
               </div>
-              <Button className="rounded-full px-6 py-2 text-sm font-medium">
-                Check availability
-              </Button>
             </div>
           </div>
         ))}
       </div>
     </div>
-  );
-}
-
-function StarIcon(props: { className?: string; onClick?: () => void }) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-    </svg>
-  );
-}
-
-function XIcon(props: { className?: string; onClick?: () => void }) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
   );
 }
