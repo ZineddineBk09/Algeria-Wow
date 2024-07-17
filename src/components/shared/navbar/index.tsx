@@ -18,7 +18,7 @@ const Navbar = () => {
     },
     {
       title: "Where to stay?",
-      href: "#",
+      href: "/where-to-stay",
     },
     {
       title: "Where to eat?",
