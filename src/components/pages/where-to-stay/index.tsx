@@ -7,7 +7,6 @@ import { Checkbox } from "~/components/ui/checkbox";
 import { Button } from "~/components/ui/button";
 import { CheckIcon, MapPinIcon, Minus, StarIcon } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { Separator } from "~/components/ui/separator";
 import Rating from "~/components/shared/rating";
 
