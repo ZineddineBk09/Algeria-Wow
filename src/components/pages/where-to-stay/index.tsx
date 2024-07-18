@@ -577,7 +577,7 @@ export default function WhereToStayPage() {
                     </div>
                   }
                 </div>
-                <div className="flex w-full items-center justify-between my-2">
+                <div className="my-2 flex w-full items-center justify-between">
                   <div className="flex items-center gap-2 text-sm text-text-gray-light">
                     <MapPinIcon className="h-4 w-4" />
                     <Link href="#" className="underline" prefetch={false}>
@@ -586,7 +586,9 @@ export default function WhereToStayPage() {
                   </div>
 
                   {/* Reviews */}
-                  <span className="text-primary-blue underline text-sm">1,345 reviews</span>
+                  <span className="text-sm text-primary-blue underline">
+                    1,345 reviews
+                  </span>
                 </div>
               </div>
               <div className="flex flex-col gap-2">
