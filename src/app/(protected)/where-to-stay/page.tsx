@@ -1,23 +1,27 @@
+import { ArrowRightIcon, CalendarIcon, LocateIcon, UserIcon } from "lucide-react";
 import AdBanner from "~/components/pages/home/ad-banner";
 import WhereToStayPage from "~/components/pages/where-to-stay";
 import { DatePicker } from "~/components/ui/date-picker";
 import { Input } from "~/components/ui/input";
+import { PlacesContextProvider } from "~/context/places";
 
 export default function WhereToStay() {
   return (
-    <main className="mx-auto flex min-h-screen w-[90%] flex-col items-center justify-center space-y-16">
-      <SearchBar />
-      <AdBanner
-        text={
-          <div>
-            Promote your
-            <br /> business on AlgeriaWOW
-          </div>
-        }
-        actionText="Get started"
-      />
-      <WhereToStayPage />
-    </main>
+    <PlacesContextProvider>
+      <main className="mx-auto flex min-h-screen w-[90%] flex-col items-center justify-center space-y-16">
+        <SearchBar />
+        <AdBanner
+          text={
+            <div>
+              Promote your
+              <br /> business on AlgeriaWOW
+            </div>
+          }
+          actionText="Get started"
+        />
+        <WhereToStayPage />
+      </main>
+    </PlacesContextProvider>
   );
 }
 
@@ -76,90 +80,5 @@ function SearchBar() {
         </div>
       </div>
     </>
-  );
-}
-
-function ArrowRightIcon(props: { className?: string; onClick?: () => void }) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
-  );
-}
-
-function CalendarIcon(props: { className?: string; onClick?: () => void }) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M8 2v4" />
-      <path d="M16 2v4" />
-      <rect width="18" height="18" x="3" y="4" rx="2" />
-      <path d="M3 10h18" />
-    </svg>
-  );
-}
-
-function LocateIcon(props: { className?: string; onClick?: () => void }) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="2" x2="5" y1="12" y2="12" />
-      <line x1="19" x2="22" y1="12" y2="12" />
-      <line x1="12" x2="12" y1="2" y2="5" />
-      <line x1="12" x2="12" y1="19" y2="22" />
-      <circle cx="12" cy="12" r="7" />
-    </svg>
-  );
-}
-
-function UserIcon(props: { className?: string; onClick?: () => void }) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-      <circle cx="12" cy="7" r="4" />
-    </svg>
   );
 }
