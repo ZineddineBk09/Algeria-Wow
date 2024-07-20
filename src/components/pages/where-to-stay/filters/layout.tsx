@@ -32,8 +32,6 @@ const FiltersLayout = ({ children }: { children: React.ReactNode }) => {
 
   const checkActiveFilter = (filter: string) => activeFilters.includes(filter);
 
-  console.log("active filters:", activeFilters);
-
   return (
     <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-[350px_1fr]">
       <div className="h-fit overflow-y-auto rounded-lg bg-background pl-4 text-text-gray-dark shadow-sm md:pl-6">
@@ -411,7 +409,7 @@ const FiltersLayout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       {/* Places */}
-      <div className="grid w-full overflow-y-auto">
+      <div className="grid w-full overflow-y-auto items-start h-fit">
         <div className="mb-4 flex items-center gap-x-2">
           <span className="font-semibold text-text-gray-light">
             {places.length} properties

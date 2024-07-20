@@ -22,44 +22,9 @@ const PlacesList = () => {
     filteredPlaces,
   } = usePlacesContext();
 
-  // const filteredPlaces = useMemo(() => {
-  //   return places.filter((place) => {
-  //     const inBudget = place.price >= budget[0]! && place.price <= budget[1]!;
-
-  //     const hasDeal =
-  //       (!deals["Free cancellation"] ||
-  //         place.facilities.includes("Free cancellation")) &&
-  //       (!deals["Reserve now, pay at stay"] ||
-  //         place.facilities.includes("Reserve now, pay at stay"));
-  //     const hasRating =
-  //       (!rating["5 stars"] || place.rating === 5) &&
-  //       (!rating["4 stars"] || place.rating === 4) &&
-  //       (!rating["3 stars"] || place.rating === 3);
-  //     const hasType =
-  //       (!type.Hotel || place.type === "Hotel") &&
-  //       (!type.Apartment || place.type === "Apartment") &&
-  //       (!type.Hostel || place.type === "Hostel") &&
-  //       (!type.Room || place.type === "Room");
-  //     const hasFacility =
-  //       (!facilities.Parking || place.facilities.includes("Parking")) &&
-  //       (!facilities.Restaurant || place.facilities.includes("Restaurant")) &&
-  //       (!facilities["Pet Friendly"] ||
-  //         place.facilities.includes("Pet Friendly")) &&
-  //       (!facilities["Fitness Center"] ||
-  //         place.facilities.includes("Fitness Center")) &&
-  //       (!facilities["Non-smoking Room"] ||
-  //         place.facilities.includes("Non-smoking Room")) &&
-  //       (!facilities.Spa || place.facilities.includes("Spa")) &&
-  //       (!facilities["Free WiFi"] || place.facilities.includes("Free WiFi")) &&
-  //       (!facilities["Swimming Pool"] ||
-  //         place.facilities.includes("Swimming Pool"));
-  //     return inBudget && hasDeal && hasRating && hasType && hasFacility;
-  //   });
-  // }, [budget, deals, rating, type, facilities]);
-
   return (
     <>
-      {places.map((place, index: number) => (
+      {filteredPlaces.map((place, index: number) => (
         <div
           key={index}
           className="flex w-full items-center gap-3 rounded-lg bg-background"
