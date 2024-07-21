@@ -14,7 +14,11 @@ import {
   SelectValue,
 } from "./select";
 
-export function DatePicker() {
+export function DatePicker({
+  placeholder = "Pick a date",
+}: {
+  placeholder?: string;
+}) {
   const [date, setDate] = React.useState<Date>();
 
   return (
@@ -27,7 +31,7 @@ export function DatePicker() {
             !date && "text-muted-foreground",
           )}
         >
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
+          {date ? format(date, "PPP") : <span>{placeholder}</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="flex w-auto flex-col space-y-2 p-2">
