@@ -11,12 +11,13 @@ import { Button } from "~/components/ui/button";
 import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
 import { Separator } from "~/components/ui/separator";
-import Logo from "~/components/shared/logo";
 import { formClasses } from "~/components/styles";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { GoogleIcon, FacebookIcon } from "~/components/icons";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 // Define validation schema using Zod
 const schema = z.object({
@@ -27,6 +28,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export default function Login() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -35,11 +37,26 @@ export default function Login() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data: {
+  const onSubmit: SubmitHandler<FormData> = async (data: {
     email: string;
     password: string;
   }) => {
     console.log(data);
+
+    const res = await signIn("algeria-wow", {
+      username: data.email,
+      password: data.password,
+      // redirect: false,
+      callbackUrl: "/where-to-stay",
+    });
+
+    console.log(res);
+    alert(JSON.stringify(res))
+
+    // if (!res?.error) {
+    //   // router.push(searchParams?.callbackUrl ?? (process.env.NEXT_PUBLIC_URL as string));
+    //   router.push("/dashboard");
+    // }
   };
 
   return (
@@ -55,9 +72,7 @@ export default function Login() {
       </DialogTrigger>
 
       <DialogContent className="flex-1 overflow-y-auto px-6 py-8">
-        <DialogHeader className="-ml-3 mb-2">
-          {/* <Logo /> */}
-        </DialogHeader>
+        <DialogHeader className="-ml-3 mb-2">{/* <Logo /> */}</DialogHeader>
         <div className="mx-auto w-full max-w-lg space-y-5 px-4">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold text-primary-blue">

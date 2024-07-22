@@ -1,8 +1,11 @@
-import { ArrowRightIcon, CalendarIcon, MapPin, UserIcon } from "lucide-react";
-import { useState } from "react";
+import { CalendarIcon, MapPin, UserIcon } from "lucide-react";
+import dynamic from "next/dynamic";
 import AdBanner from "~/components/pages/home/ad-banner";
 import WhereToStayPage from "~/components/pages/where-to-stay";
-import UserLocation from "~/components/pages/where-to-stay/filters/map";
+const UserLocation = dynamic(
+  () => import("~/components/pages/where-to-stay/filters/map"),
+  { ssr: false },
+);
 import { DatePicker } from "~/components/ui/date-picker";
 import { Input } from "~/components/ui/input";
 import { PlacesContextProvider } from "~/context/places";
