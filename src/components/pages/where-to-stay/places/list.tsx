@@ -8,6 +8,7 @@ import { Button } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
 import { usePlacesContext } from "~/context/places";
 import { diplayLargeNumber } from "~/utils";
+import AdBanner from "../../home/ad-banner";
 
 const PlacesList = () => {
   const {
@@ -54,9 +55,9 @@ const PlacesList = () => {
               <div className="my-2 flex w-full items-center justify-between">
                 <div className="flex items-center gap-2 text-sm text-text-gray-light">
                   <MapPinIcon className="h-4 w-4" />
-                  <Link href="#" className="underline" prefetch={false}>
+                  <span className="underline">
                     {place.address}
-                  </Link>
+                  </span>
                 </div>
 
                 {/* Reviews */}
