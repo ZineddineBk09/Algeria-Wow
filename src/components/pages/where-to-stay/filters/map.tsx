@@ -6,13 +6,10 @@ import { MapContainer, TileLayer, useMapEvents, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
 
-const CENTER: [number, number] = [36.7291, 3.1679];
-const ZOOM = 13;
-
 export default function UserLocation() {
   const [position, setPosition] = useState({
-    lat: 36.7291,
-    lng: 3.1679,
+    lat: 36.7692,
+    lng: 3.0549,
   });
   const [map, setMap] = useState<L.Map | null>(null);
 
@@ -37,8 +34,8 @@ export default function UserLocation() {
       <div className="relative h-32 w-[420px]">
         <MapContainer
           scrollWheelZoom={false}
-          center={CENTER}
-          zoom={ZOOM}
+          center={[position.lat, position.lng]}
+          zoom={12}
           zoomControl={false}
           ref={setMap}
           style={{
