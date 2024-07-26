@@ -1,11 +1,5 @@
 "use client";
 
-import {
-  Dialog,
-  DialogTrigger,
-  DialogHeader,
-  DialogContent,
-} from "~/components/ui/dialog";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { Label } from "~/components/ui/label";
@@ -18,8 +12,8 @@ import * as z from "zod";
 import { GoogleIcon, FacebookIcon } from "~/components/icons";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import Logo from "~/components/shared/logo";
 
-// Define validation schema using Zod
 const schema = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
@@ -27,7 +21,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export default function Login() {
+export default function LoginPage() {
   const router = useRouter();
   const {
     register,
@@ -60,25 +54,11 @@ export default function Login() {
   };
 
   return (
-    <Dialog>
-      {/* <DialogTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="inline-flex h-11 w-fit items-center justify-center rounded-xl text-sm font-medium text-primary text-primary-yellow hover:bg-transparent hover:text-primary-yellow focus-visible:ring-gray-300 disabled:pointer-events-none disabled:opacity-50"
-        >
-          Log in
-        </Button>
-      </DialogTrigger> */}
-      <Link
-        className="inline-flex h-11 w-fit items-center justify-center rounded-xl text-sm font-medium text-primary text-primary-yellow hover:bg-transparent hover:text-primary-yellow focus-visible:ring-gray-300 disabled:pointer-events-none disabled:opacity-50"
-        href="/login"
-      >
-        Log in
-      </Link>
-
-      <DialogContent className="flex-1 overflow-y-auto px-6 py-8">
-        <DialogHeader className="-ml-3 mb-2">{/* <Logo /> */}</DialogHeader>
+    <main className="w-full">
+      <div className="mx-auto flex min-h-screen w-[90%] flex-col items-center justify-center space-y-16">
+        <div className="flex w-full max-w-lg items-start ">
+          <Logo />
+        </div>
         <div className="mx-auto w-full max-w-lg space-y-5 px-4">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold text-primary-blue">
@@ -158,7 +138,7 @@ export default function Login() {
           <div className="text-center text-xs text-muted-foreground">
             Don&apos;t have an account?{" "}
             <Link
-              href="#"
+              href="/register"
               className="font-semibold text-primary-blue"
               prefetch={false}
             >
@@ -166,7 +146,7 @@ export default function Login() {
             </Link>
           </div>
         </div>
-      </DialogContent>
-    </Dialog>
+      </div>
+    </main>
   );
 }

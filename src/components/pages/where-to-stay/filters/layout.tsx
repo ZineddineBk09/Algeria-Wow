@@ -3,8 +3,32 @@ import { Slider } from "~/components/ui/slider";
 import { Label } from "~/components/ui/label";
 import { Checkbox } from "~/components/ui/checkbox";
 import { Button } from "~/components/ui/button";
-import { MoveUp, Minus, StarIcon, MoveDown, Dot } from "lucide-react";
+import {
+  MoveUp,
+  Minus,
+  StarIcon,
+  MoveDown,
+  Dot,
+  MapPinIcon,
+  CheckIcon,
+  Clock,
+  ScrollIcon,
+  Phone,
+  ScrollText,
+} from "lucide-react";
 import { usePlacesContext } from "~/context/places";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "~/components/ui/pagination";
+import Rating from "~/components/shared/rating";
+import { diplayLargeNumber } from "~/utils";
+import { Separator } from "~/components/ui/separator";
 
 const MiniTitle = ({ text }: { text: string }) => (
   <h3 className="mb-2 text-base font-semibold text-primary-blue">{text}</h3>
@@ -31,6 +55,11 @@ const FiltersLayout = ({ children }: { children: React.ReactNode }) => {
   } = usePlacesContext();
 
   const checkActiveFilter = (filter: string) => activeFilters.includes(filter);
+
+  const calculateRateOptions = (rating: number) => {
+    return places.filter((place) => Math.round(place.rating) === Number(rating))
+      .length;
+  };
 
   return (
     <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-[350px_1fr]">
@@ -99,81 +128,36 @@ const FiltersLayout = ({ children }: { children: React.ReactNode }) => {
           <div>
             <MiniTitle text="Rating" />
             <div className="grid gap-3">
-              <Label className="flex items-center gap-2 font-normal">
-                <Checkbox
-                  checked={rating["5 stars"]}
-                  onCheckedChange={(checked) =>
-                    setRating((prev) => ({
-                      ...prev,
-                      "5 stars": Boolean(checked),
-                    }))
-                  }
-                  className="h-5 w-5"
-                />
-                <div className="flex items-center gap-1">
-                  {Array.from({ length: 5 }).map((_, i: number) => (
-                    <StarIcon
-                      key={i}
-                      className="h-5 w-5 fill-primary-green text-primary-green"
-                    />
-                  ))}
-                </div>
-                (15 options)
-              </Label>
-              <Label className="flex items-center gap-2 font-normal">
-                <Checkbox
-                  checked={rating["4 stars"]}
-                  onCheckedChange={(checked) =>
-                    setRating((prev) => ({
-                      ...prev,
-                      "4 stars": Boolean(checked),
-                    }))
-                  }
-                  className="h-5 w-5"
-                />
-                <div className="flex items-center gap-1">
-                  {Array.from({ length: 4 }).map((_, i: number) => (
-                    <StarIcon
-                      key={i}
-                      className="h-5 w-5 fill-primary-green text-primary-green"
-                    />
-                  ))}
-                  {Array.from({ length: 1 }).map((_, i: number) => (
-                    <StarIcon
-                      key={i}
-                      className="h-5 w-5 fill-muted stroke-muted-foreground"
-                    />
-                  ))}
-                </div>
-                (23 options)
-              </Label>
-              <Label className="flex items-center gap-2 font-normal">
-                <Checkbox
-                  checked={rating["3 stars"]}
-                  onCheckedChange={(checked) =>
-                    setRating((prev) => ({
-                      ...prev,
-                      "3 stars": Boolean(checked),
-                    }))
-                  }
-                  className="h-5 w-5"
-                />
-                <div className="flex items-center gap-1">
-                  {Array.from({ length: 3 }).map((_, i: number) => (
-                    <StarIcon
-                      key={i}
-                      className="h-5 w-5 fill-primary-green text-primary-green"
-                    />
-                  ))}
-                  {Array.from({ length: 2 }).map((_, i: number) => (
-                    <StarIcon
-                      key={i}
-                      className="h-5 w-5 fill-muted stroke-muted-foreground"
-                    />
-                  ))}
-                </div>
-                (6 options)
-              </Label>
+              {Array.from({ length: 5 }).map((_, i: number) => (
+                <Label key={i} className="flex items-center gap-2 font-normal">
+                  <Checkbox
+                    //@ts-expect-error - I don't know how to fix this
+                    checked={!!rating[`${i + 1} stars`]}
+                    onCheckedChange={(checked) =>
+                      setRating((prev) => ({
+                        ...prev,
+                        [`${i + 1} stars`]: Boolean(checked),
+                      }))
+                    }
+                    className="h-5 w-5"
+                  />
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: i + 1 }).map((_, j: number) => (
+                      <StarIcon
+                        key={j}
+                        className="h-5 w-5 fill-primary-green text-primary-green"
+                      />
+                    ))}
+                    {Array.from({ length: 5 - i - 1 }).map((_, j: number) => (
+                      <StarIcon
+                        key={j}
+                        className="h-5 w-5 fill-muted stroke-muted-foreground"
+                      />
+                    ))}
+                  </div>
+                  ({calculateRateOptions(i + 1)} options)
+                </Label>
+              ))}
             </div>
           </div>
           <div>
@@ -409,7 +393,7 @@ const FiltersLayout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       {/* Places */}
-      <div className="grid w-full overflow-y-auto items-start h-fit">
+      <div className="grid h-fit w-full items-start overflow-y-auto">
         <div className="mb-4 flex items-center gap-x-2">
           <span className="font-semibold text-text-gray-light">
             {places.length} properties
@@ -418,7 +402,6 @@ const FiltersLayout = ({ children }: { children: React.ReactNode }) => {
           <Button
             variant="outline"
             className={`rounded-full border-primary-blue text-primary-blue`}
-            onClick={() => {}}
           >
             Recommended
           </Button>
@@ -474,6 +457,188 @@ const FiltersLayout = ({ children }: { children: React.ReactNode }) => {
 
         {/* Children */}
         {children}
+
+        <Separator />
+
+        {/* Cards */}
+        {/* Movie */}
+        <div className="flex w-full items-center gap-3 rounded-lg bg-background">
+          <img
+            src="/images/place-img-1.png"
+            alt=""
+            className="h-64 w-[60%] rounded-lg"
+          />
+          <div className="flex w-full flex-col gap-4">
+            <div>
+              <div className="flex w-full items-center justify-between">
+                <h3 className="text-xl font-bold text-primary-blue">
+                  FRIDA En Projection
+                </h3>
+
+                {/* Rating */}
+                {
+                  <div className="flex items-center gap-1">
+                    <Rating rating={3.5} size="sm" />
+                    <span className="ml-3 text-sm font-medium text-text-gray-light">
+                      {`${3.5} / 5`}
+                    </span>
+                  </div>
+                }
+              </div>
+              <div className="my-3 flex w-full items-start justify-between">
+                <div className="flex max-w-[80%] flex-col gap-y-3">
+                  <div className="flex w-full items-center gap-2 text-sm text-text-gray-light">
+                    <span>
+                      Héliopolis est un film dramatique algérien réalisé par
+                      Djaffar Gacem et sorti en 2020. Le film représentera
+                      l&apos;Algérie...
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-text-gray-light">
+                    <MapPinIcon className="h-4 w-4" />
+                    <span className="underline">
+                      Cinéma Cosmos de Riadh El Fath.
+                    </span>
+                  </div>
+                </div>
+
+                {/* Reviews */}
+                <span className="!w-fit text-sm text-primary-blue underline">
+                  {diplayLargeNumber(2300)} reviews
+                </span>
+              </div>
+            </div>
+
+            {/* Date */}
+            <div className="-mt-2 flex items-center gap-2 text-primary-blue">
+              <Clock className="h-4 w-4" />
+              <span>
+                <b className="font-medium">Open:</b> May 20, 2021
+              </span>
+            </div>
+            <Separator />
+            <div className="flex items-center justify-between">
+              <div className="font-medium text-primary-yellow">
+                DZD {diplayLargeNumber(1350)} {" - "}DZD{" "}
+                {diplayLargeNumber(1750)}
+              </div>
+              <Button
+                variant="outline"
+                size="icon"
+                className="h-11 w-fit items-center justify-center rounded-xl border-2 border-primary-yellow bg-white px-8 py-1 text-sm font-medium text-primary text-primary-yellow hover:bg-gray-100  hover:text-primary-yellow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-300 disabled:pointer-events-none disabled:opacity-50"
+              >
+                Check availability
+              </Button>
+            </div>
+          </div>
+        </div>
+        {/* Restaurant */}
+        <div className="flex w-full items-center gap-3 rounded-lg bg-background">
+          <img
+            src="/images/place-img-1.png"
+            alt=""
+            className="h-64 w-[60%] rounded-lg"
+          />
+          <div className="flex w-full flex-col gap-4">
+            <div>
+              <div className="flex w-full items-center justify-between">
+                <h3 className="text-xl font-bold text-primary-blue">
+                  Restaurant Eldjazair
+                </h3>
+
+                {/* Rating */}
+                {
+                  <div className="flex items-center gap-1">
+                    <Rating rating={3.5} size="sm" />
+                    <span className="ml-3 text-sm font-medium text-text-gray-light">
+                      {`${3.5} / 5`}
+                    </span>
+                  </div>
+                }
+              </div>
+              <div className="my-3 flex w-full items-start justify-between">
+                <div className="flex max-w-[80%] flex-col gap-y-3">
+                  <div className="flex items-center gap-2 text-sm text-text-gray-light">
+                    <MapPinIcon className="h-4 w-4" />
+                    <span className="underline">
+                      7 Rue Idir Toumi Ben Aknoun, Algiers 16000 Algeria
+                    </span>
+                  </div>
+                </div>
+
+                {/* Reviews */}
+                <span className="!w-fit text-sm text-primary-blue underline">
+                  {diplayLargeNumber(2300)} reviews
+                </span>
+              </div>
+            </div>
+
+            {/* Date */}
+            <div className="-mt-2 flex flex-col gap-y-2 items-start text-primary-blue">
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                <span>
+                  <b className="font-medium">Open now:</b> 11:00 AM - 11:30 PM
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <ScrollText className="h-4 w-4" />
+                <span>
+                  <b className="font-medium">Menu</b>
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4" />
+                <span>
+                  <b className="font-medium">+213 23 38 49 82</b>
+                </span>
+              </div>
+            </div>
+            <Separator />
+            <div className="flex items-center justify-between">
+              <div className="font-medium text-primary-yellow">
+                DZD {diplayLargeNumber(1350)} {" - "}DZD{" "}
+                {diplayLargeNumber(1750)}
+              </div>
+              <Button
+                variant="outline"
+                size="icon"
+                className="h-11 w-fit items-center justify-center rounded-xl border-2 border-primary-yellow bg-white px-8 py-1 text-sm font-medium text-primary text-primary-yellow hover:bg-gray-100  hover:text-primary-yellow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-300 disabled:pointer-events-none disabled:opacity-50"
+              >
+                Check availability
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Pagination */}
+        <Pagination className="my-10">
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href={``} />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#" isActive>
+                2
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">11</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </div>
     </div>
   );

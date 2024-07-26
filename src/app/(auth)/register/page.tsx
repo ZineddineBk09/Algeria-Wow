@@ -11,13 +11,16 @@ import { Button } from "~/components/ui/button";
 import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
 import { Separator } from "~/components/ui/separator";
-import Logo from "~/components/shared/logo";
 import { formClasses } from "~/components/styles";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { GoogleIcon, FacebookIcon } from "~/components/icons";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
+import Logo from "~/components/shared/logo";
 
+// Define validation schema using Zod
 // Define validation schema using Zod
 const schema = z
   .object({
@@ -35,7 +38,8 @@ const schema = z
 
 type FormData = z.infer<typeof schema>;
 
-export default function Register() {
+export default function RegisterPage() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -54,25 +58,12 @@ export default function Register() {
   };
 
   return (
-    <Dialog>
-      {/* <DialogTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="inline-flex h-11 w-fit items-center justify-center rounded-xl text-sm font-medium text-primary text-primary-yellow hover:bg-transparent hover:text-primary-yellow focus-visible:ring-gray-300 disabled:pointer-events-none disabled:opacity-50"
-        >
-          Sign up
-        </Button>
-      </DialogTrigger> */}
-      <Link
-        className="inline-flex h-11 w-fit items-center justify-center rounded-xl text-sm font-medium text-primary text-primary-yellow hover:bg-transparent hover:text-primary-yellow focus-visible:ring-gray-300 disabled:pointer-events-none disabled:opacity-50"
-        href="/register"
-      >
-        Sign up
-      </Link>
-
-      <DialogContent className="flex-1 overflow-y-auto px-6 py-8">
-        <div className="mx-auto max-w-lg space-y-5 px-2">
+    <main className="w-full py-10">
+      <div className="mx-auto flex min-h-screen w-[90%] flex-col items-center justify-center space-y-16">
+        <div className="flex w-full max-w-lg items-start ">
+          <Logo />
+        </div>
+        <div className="mx-auto w-full max-w-lg space-y-5 px-2">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold text-primary-blue">
               Let’s Create Your Account
@@ -192,7 +183,7 @@ export default function Register() {
           <div className="text-center text-xs text-muted-foreground">
             Already have an account?{" "}
             <Link
-              href="#"
+              href="/login"
               className="font-semibold text-primary-blue"
               prefetch={false}
             >
@@ -200,7 +191,7 @@ export default function Register() {
             </Link>
           </div>
         </div>
-      </DialogContent>
-    </Dialog>
+      </div>
+    </main>
   );
 }
