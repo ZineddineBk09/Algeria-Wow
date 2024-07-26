@@ -156,6 +156,9 @@ export default function RegisterPage() {
             <Button
               variant="outline"
               className="h-11 flex-1 border border-primary-blue text-primary-blue"
+              onClick={async () => {
+                await signIn("google");
+              }}
             >
               <GoogleIcon className="mr-2 h-4 w-4 " />
               Google
@@ -163,6 +166,9 @@ export default function RegisterPage() {
             <Button
               variant="outline"
               className="h-11 flex-1 border border-primary-blue text-primary-blue"
+              onClick={async () => {
+                await signIn("facebook");
+              }}
             >
               <FacebookIcon className="mr-2 h-4 w-4 " />
               Facebook

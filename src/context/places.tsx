@@ -295,7 +295,6 @@ export const PlacesContextProvider = ({
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
 
   const filteredPlaces = useMemo(() => {
-    console.log("places", places);
     return places.filter((place) => {
       const inBudget = place.price >= budget[0]! && place.price <= budget[1]!;
 

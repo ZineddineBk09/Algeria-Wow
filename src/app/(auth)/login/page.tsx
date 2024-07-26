@@ -35,17 +35,14 @@ export default function LoginPage() {
     email: string;
     password: string;
   }) => {
-    console.log(data);
 
-    const res = await signIn("algeria-wow", {
-      username: data.email,
+    const res = await signIn("credentials", {
+      email: data.email,
       password: data.password,
       // redirect: false,
       callbackUrl: "/where-to-stay",
     });
 
-    console.log(res);
-    alert(JSON.stringify(res));
 
     // if (!res?.error) {
     //   // router.push(searchParams?.callbackUrl ?? (process.env.NEXT_PUBLIC_URL as string));
@@ -121,6 +118,9 @@ export default function LoginPage() {
             <Button
               variant="outline"
               className="h-11 flex-1 border border-primary-blue text-primary-blue"
+              onClick={async () => {
+                await signIn("google");
+              }}
             >
               <GoogleIcon className="mr-2 h-4 w-4 " />
               Google
@@ -128,6 +128,9 @@ export default function LoginPage() {
             <Button
               variant="outline"
               className="h-11 flex-1 border border-primary-blue text-primary-blue"
+              onClick={async () => {
+                await signIn("facebook");
+              }}
             >
               <FacebookIcon className="mr-2 h-4 w-4 " />
               Facebook
