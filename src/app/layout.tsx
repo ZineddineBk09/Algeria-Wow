@@ -2,8 +2,6 @@ import "~/styles/globals.css";
 
 // setup poppins font
 import { Poppins } from "next/font/google";
-import Navbar from "~/components/shared/navbar";
-import Footer from "~/components/shared/footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -24,13 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={poppins.className}>
-      <body>
-        <div className="mx-auto flex w-[100%] flex-col items-center overflow-x-hidden">
-          <Navbar />
-          {children}
-        </div>
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
