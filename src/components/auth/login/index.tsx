@@ -51,7 +51,7 @@ export default function Login() {
     });
 
     console.log(res);
-    alert(JSON.stringify(res))
+    alert(JSON.stringify(res));
 
     // if (!res?.error) {
     //   // router.push(searchParams?.callbackUrl ?? (process.env.NEXT_PUBLIC_URL as string));
@@ -61,7 +61,7 @@ export default function Login() {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      {/* <DialogTrigger asChild>
         <Button
           variant="ghost"
           size="icon"
@@ -69,7 +69,13 @@ export default function Login() {
         >
           Log in
         </Button>
-      </DialogTrigger>
+      </DialogTrigger> */}
+      <Link
+        className="inline-flex h-11 w-fit items-center justify-center rounded-xl text-sm font-medium text-primary text-primary-yellow hover:bg-transparent hover:text-primary-yellow focus-visible:ring-gray-300 disabled:pointer-events-none disabled:opacity-50"
+        href="/login"
+      >
+        Log in
+      </Link>
 
       <DialogContent className="flex-1 overflow-y-auto px-6 py-8">
         <DialogHeader className="-ml-3 mb-2">{/* <Logo /> */}</DialogHeader>

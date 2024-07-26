@@ -55,7 +55,7 @@ export default function Register() {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      {/* <DialogTrigger asChild>
         <Button
           variant="ghost"
           size="icon"
@@ -63,7 +63,13 @@ export default function Register() {
         >
           Sign up
         </Button>
-      </DialogTrigger>
+      </DialogTrigger> */}
+      <Link
+        className="inline-flex h-11 w-fit items-center justify-center rounded-xl text-sm font-medium text-primary text-primary-yellow hover:bg-transparent hover:text-primary-yellow focus-visible:ring-gray-300 disabled:pointer-events-none disabled:opacity-50"
+        href="/register"
+      >
+        Sign up
+      </Link>
 
       <DialogContent className="flex-1 overflow-y-auto px-6 py-8">
         <div className="mx-auto max-w-lg space-y-5 px-2">
