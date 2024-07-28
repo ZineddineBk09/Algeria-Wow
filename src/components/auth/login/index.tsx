@@ -41,7 +41,6 @@ export default function Login() {
     email: string;
     password: string;
   }) => {
-    console.log(data);
 
     const res = await signIn("algeria-wow", {
       username: data.email,
@@ -50,8 +49,6 @@ export default function Login() {
       callbackUrl: "/where-to-stay",
     });
 
-    console.log(res);
-    alert(JSON.stringify(res));
 
     // if (!res?.error) {
     //   // router.push(searchParams?.callbackUrl ?? (process.env.NEXT_PUBLIC_URL as string));
