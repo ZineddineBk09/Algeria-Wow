@@ -66,7 +66,7 @@ function SearchBar() {
                 className="border-none bg-transparent p-2 focus:outline-none"
               />
             </div>
-            <button className="h-10 rounded-lg bg-primary-yellow px-8 text-sm font-semibold text-gray-50 shadow transition-colors hover:bg-primary-yellow/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-yellow lg:h-11">
+            <button className="h-10 text-center rounded-lg bg-primary-yellow w-24 text-sm font-semibold text-gray-50 shadow transition-colors hover:bg-primary-yellow/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-yellow lg:h-11">
               Search
             </button>
           </div>
