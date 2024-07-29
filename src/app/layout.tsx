@@ -1,7 +1,8 @@
 import "~/styles/globals.css";
 
-// setup poppins font
 import { Poppins } from "next/font/google";
+import { getServerSession } from "next-auth";
+import NextAuthProvider from "./_auth-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -15,14 +16,18 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession();
+  
   return (
     <html lang="en" className={poppins.className}>
-      <body>{children}</body>
+      <body>
+        <NextAuthProvider session={session}>{children}</NextAuthProvider>
+      </body>
     </html>
   );
 }
