@@ -26,7 +26,7 @@ const PlacesList = () => {
   return (
     <>
       {filteredPlaces.map((place, index: number) => (
-        <div
+        <section
           key={index}
           className="flex w-full items-center gap-3 rounded-lg bg-background"
         >
@@ -93,7 +93,7 @@ const PlacesList = () => {
               </Button>
             </div>
           </div>
-        </div>
+        </section>
       ))}
     </>
   );
