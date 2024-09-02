@@ -26,7 +26,7 @@ const PlacesList = () => {
   return (
     <>
       {filteredPlaces.map((place, index: number) => (
-        <div
+        <section
           key={index}
           className="flex w-full items-center gap-3 rounded-lg bg-background"
         >
@@ -55,9 +55,7 @@ const PlacesList = () => {
               <div className="my-2 flex w-full items-center justify-between">
                 <div className="flex items-center gap-2 text-sm text-text-gray-light">
                   <MapPinIcon className="h-4 w-4" />
-                  <span className="underline">
-                    {place.address}
-                  </span>
+                  <span className="underline">{place.address}</span>
                 </div>
 
                 {/* Reviews */}
@@ -93,7 +91,7 @@ const PlacesList = () => {
               </Button>
             </div>
           </div>
-        </div>
+        </section>
       ))}
     </>
   );
