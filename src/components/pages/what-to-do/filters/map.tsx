@@ -30,42 +30,37 @@ export default function UserLocation() {
   };
 
   return (
-    <>
-      <div className="relative h-32 w-[420px]">
-        <MapContainer
-          scrollWheelZoom={false}
-          center={[position.lat, position.lng]}
-          zoom={12}
-          zoomControl={false}
-          ref={setMap}
-          style={{
-            height: "100%",
-            width: "100%",
-            boxSizing: "border-box",
-            borderRadius: "20px",
-            margin: "auto",
-            position: "absolute",
-            top: "0",
-            left: "0",
-            bottom: "0",
-            right: "0",
-            zIndex: 0,
-          }}
+    <section className="relative h-32 w-[420px]">
+      <MapContainer
+        scrollWheelZoom={false}
+        center={[position.lat, position.lng]}
+        zoom={12}
+        zoomControl={false}
+        ref={setMap}
+        style={{
+          height: "100%",
+          width: "100%",
+          boxSizing: "border-box",
+          borderRadius: "20px",
+          margin: "auto",
+          position: "absolute",
+          top: "0",
+          left: "0",
+          bottom: "0",
+          right: "0",
+          zIndex: 0,
+        }}
+      >
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      </MapContainer>
+      <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-[#FAE8AC] bg-opacity-50">
+        <button
+          className="font-semibold text-slate-700"
+          onClick={askUserLocation}
         >
-          <TileLayer
-            // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-        </MapContainer>
-        <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-[#FAE8AC] bg-opacity-50">
-          <button
-            className="font-semibold text-slate-700"
-            onClick={askUserLocation}
-          >
-            View on map <ArrowRightIcon className="ml-1 inline-block h-4 w-4" />
-          </button>
-        </div>
+          View on map <ArrowRightIcon className="ml-1 inline-block h-4 w-4" />
+        </button>
       </div>
-    </>
+    </section>
   );
 }
