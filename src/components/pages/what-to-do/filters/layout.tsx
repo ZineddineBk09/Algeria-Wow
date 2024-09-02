@@ -47,8 +47,8 @@ const FiltersLayout = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-[350px_1fr]">
-      <div className="h-fit overflow-y-auto rounded-lg bg-background pl-4 text-text-gray-dark shadow-sm md:pl-6">
+    <aside className="grid w-full grid-cols-1 gap-8 md:grid-cols-[350px_1fr]">
+      <section className="h-fit overflow-y-auto rounded-lg bg-background pl-4 text-text-gray-dark shadow-sm md:pl-6">
         <div className="flex w-full items-center justify-between">
           <h2 className="mb-4 text-lg">Filters</h2>
           <Button
@@ -375,10 +375,10 @@ const FiltersLayout = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Places */}
-      <div className="grid h-fit w-full items-start overflow-y-auto">
+      <section className="grid h-fit w-full items-start overflow-y-auto">
         <div className="mb-4 flex items-center gap-x-2">
           <span className="font-semibold text-text-gray-light">
             {places.length} properties
@@ -470,8 +470,8 @@ const FiltersLayout = ({ children }: { children: React.ReactNode }) => {
             </PaginationItem>
           </PaginationContent>
         </Pagination>
-      </div>
-    </div>
+      </section>
+    </aside>
   );
 };
 
