@@ -61,9 +61,9 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full bg-primary-blue text-white mt-8">
-      <div className="mx-auto gap-y-10 flex w-full flex-col justify-between px-4 py-12 sm:px-6 md:flex-row lg:px-8 lg:py-16">
-        <div className="mx-auto flex w-full flex-col space-y-8 md:w-1/3">
+    <footer className="mt-8 w-full bg-primary-blue text-white">
+      <div className="mx-auto flex w-full flex-col justify-between gap-y-10 px-4 py-12 sm:px-6 md:flex-row lg:px-8 lg:py-16">
+        <section className="mx-auto flex w-full flex-col space-y-8 md:w-1/3">
           <Logo white />
           <div className="flex flex-col items-start space-y-4">
             <p className="text-sm">We accept :</p>
@@ -80,11 +80,11 @@ export default function Footer() {
             </div>
           </div>
           <p className="mt-12 text-xs opacity-50">
-            COPYRIGHT © 2024 ALGERIAWOW
+            COPYRIGHT © {Date.now().toString().slice(0, 4)} ALGERIAWOW
           </p>
-        </div>
+        </section>
 
-        <div className="mx-auto flex w-full flex-col space-y-4 md:w-1/3">
+        <section className="mx-auto flex w-full flex-col space-y-4 md:w-1/3">
           {links.map((link) => (
             <a
               key={link.name}
@@ -94,9 +94,9 @@ export default function Footer() {
               {link.name}
             </a>
           ))}
-        </div>
+        </section>
 
-        <div className="mx-auto flex w-full flex-col space-y-4 pr-6 md:w-1/3">
+        <section className="mx-auto flex w-full flex-col space-y-4 pr-6 md:w-1/3">
           <h3 className="text-sm font-semibold">Have question or problem?</h3>
           <Input
             placeholder="Enter your email"
@@ -107,7 +107,7 @@ export default function Footer() {
             className="min-h-[100px] border-0 bg-gray-400/60 !text-gray-200 !placeholder-gray-200"
           />
           <Button className="w-24 bg-primary-yellow">Send</Button>
-        </div>
+        </section>
       </div>
     </footer>
   );
