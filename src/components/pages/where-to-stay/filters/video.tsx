@@ -3,8 +3,8 @@ import videojs from "video.js";
 import "video.js/dist/video-js.css";
 
 const VideoJS = (props: any) => {
-  const videoRef = React.useRef(null);
-  const playerRef = React.useRef(null);
+  const videoRef: any = React.useRef(null);
+  const playerRef: any = React.useRef(null);
   const { options, onReady } = props;
 
   React.useEffect(() => {
@@ -14,7 +14,7 @@ const VideoJS = (props: any) => {
       const videoElement = document.createElement("video-js");
 
       videoElement.classList.add("vjs-big-play-centered");
-      videoRef.current.appendChild(videoElement);
+      videoRef.current?.appendChild(videoElement);
 
       const player = (playerRef.current = videojs(videoElement, options, () => {
         videojs.log("player is ready");
@@ -26,8 +26,8 @@ const VideoJS = (props: any) => {
     } else {
       const player = playerRef.current;
 
-      player.autoplay(options.autoplay);
-      player.src(options.sources);
+      player?.autoplay(options.autoplay);
+      player?.src(options.sources);
     }
   }, [options, videoRef]);
 
@@ -66,7 +66,7 @@ const VideoPlayer = () => {
     ],
   };
 
-  const handlePlayerReady = (player) => {
+  const handlePlayerReady = (player: any) => {
     playerRef.current = player;
 
     // You can handle player events here, for example:
