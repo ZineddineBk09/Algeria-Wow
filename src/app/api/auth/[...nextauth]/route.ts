@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 
-export const authOptions = {
+const authOptions = {
   pages: {
     signIn: "/login",
   },
@@ -73,8 +73,8 @@ export const authOptions = {
       },
     }),
   ],
-} satisfies AuthOptions;
+} as AuthOptions;
 
-export const handler = NextAuth(authOptions);
-
+const handler = NextAuth(authOptions);
+// export default handler;
 export { handler as GET, handler as POST };
