@@ -14,6 +14,7 @@ const config = {
     "@typescript-eslint/prefer-function-type": "off",
     "@typescript-eslint/no-unsafe-return": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unsafe-assignment":"off",
     // The above rule are added by me
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/consistent-type-definitions": "off",

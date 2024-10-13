@@ -609,14 +609,14 @@ const FiltersLayout = ({ children }: { children: React.ReactNode }) => {
 
         {/* Video */}
         <div className="flex w-full items-center gap-3 rounded-lg bg-background">
-          <video
+          {/* <video
             width="400"
             controls
             src="/videos/video.mp4"
             typeof="video/mp4"
             autoPlay
             className="h-64 w-[40%] rounded-2xl border"
-          />
+          /> */}
 
           <div className="flex w-full flex-col gap-4">
             <div>

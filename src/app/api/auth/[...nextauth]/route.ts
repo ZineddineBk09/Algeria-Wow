@@ -1,9 +1,10 @@
-import NextAuth, { AuthOptions } from "next-auth";
+import NextAuth from "next-auth";
+import type { AuthOptions } from "next-auth"; // Import as a type
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 
-export const authOptions = {
+const authOptions: AuthOptions = {
   pages: {
     signIn: "/login",
   },
@@ -32,15 +33,14 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
 
-      // @ts-ignore
-      async authorize(credentials) {
+      // @ts-expect-error: Should not be used
+      async authorize(credentials: Record<"email" | "password", string>) {
         console.log("credentials", credentials);
 
         if (!credentials?.email || !credentials?.password) {
           return null;
         }
 
-        // @ts-ignore
         const user = {
           id: 1,
           name: "John Doe",
@@ -57,24 +57,31 @@ export const authOptions = {
         return null;
       },
 
-      // @ts-ignore
-      async jwt(token, user) {
+      async jwt(
+        token: {
+          id: number;
+          name: string;
+          email: string;
+        },
+        user: { id?: number; name?: string; email?: string },
+      ) {
         if (user) {
-          token.id = user.id;
-          token.name = user.name;
-          token.email = user.email;
+          token.id = user.id!;
+          token.name = user.name!;
+          token.email = user.email!;
         }
         return token;
       },
 
-      // @ts-ignore
-      async session(session, user) {
+      // @ts-expect-error: Should not be called
+      async session(session, _user) {
         return session;
       },
     }),
   ],
-} satisfies AuthOptions;
+};
 
-export const handler = NextAuth(authOptions);
+// Explicitly declare the handler as NextAuthHandler
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

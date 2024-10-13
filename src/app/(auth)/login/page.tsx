@@ -15,8 +15,11 @@ import { signIn } from "next-auth/react";
 import Logo from "~/components/shared/logo";
 
 const schema = z.object({
-  email: z.string().email("Invalid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  email: z.string().email("Invalid email address").default("admin@site.com"),
+  password: z
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .default("password"),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -35,14 +38,12 @@ export default function LoginPage() {
     email: string;
     password: string;
   }) => {
-
     const res = await signIn("credentials", {
       email: data.email,
       password: data.password,
       // redirect: false,
       callbackUrl: "/where-to-stay",
     });
-
 
     // if (!res?.error) {
     //   // router.push(searchParams?.callbackUrl ?? (process.env.NEXT_PUBLIC_URL as string));
@@ -76,6 +77,7 @@ export default function LoginPage() {
                 placeholder="m@example.com"
                 {...register("email")}
                 className={formClasses.input}
+                defaultValue={'admin@site.com'}
               />
               {errors.email && (
                 <p className="text-xs text-red-500">
@@ -92,6 +94,7 @@ export default function LoginPage() {
                 type="password"
                 {...register("password")}
                 className={formClasses.input}
+                defaultValue={'password'}
               />
               {errors.password && (
                 <p className="text-xs text-red-500">
