@@ -63,7 +63,7 @@ function ActivitiesCarousel() {
                 />
                 <Badge
                   variant="outline"
-                  className="absolute left-6 top-6 border-2 border-primary-yellow bg-white text-xs capitalize text-primary-yellow"
+                  className="absolute left-10 top-12 border-2 border-primary-yellow bg-white text-xs capitalize text-primary-yellow"
                 >
                   Hotel
                 </Badge>
